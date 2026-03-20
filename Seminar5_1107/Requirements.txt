@@ -1,0 +1,5 @@
+1. The coffee shop system must provide a single shared “Daily Recipe Board” object used by all baristas (espresso station, cold drinks, seasonal specials). Because not every day includes special drinks or custom recipes, this board must be created only when it is first requested—like bringing out the seasonal menu only when a customer asks for it. - lazy
+
+2. The shop must provide a single central “Order Log Book” used by all staff. Because opening procedures, machine startup issues, and early morning mishaps must be recorded, the log book must be created and ready as soon as the shop opens. It implements ILogging. This ensures everything—from a broken grinder at 6 AM to the first order of the day—is recorded properly. - eager
+
+3. The shop must provide separate log books for predefined categories such as ERROR (machine failures), INFO (general activity), ORDERS (customer requests), and STAFF (internal updates). For each category, every request must use the same log book and the same section—no new categories can be added. Each one acts like a clearly labeled notebook, keeping everything organized even during the morning rush. - registry
