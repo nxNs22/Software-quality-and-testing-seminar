@@ -117,6 +117,7 @@ public class LazyCoffeeDrink {
             lazyCoffeeDrink.base = this.base;
             lazyCoffeeDrink.milk = this.milk;
             lazyCoffeeDrink.isIced = this.isIced;
+            lazyCoffeeDrink.topping = this.topping;
             lazyCoffeeDrink.size = this.size;
 
             return lazyCoffeeDrink;

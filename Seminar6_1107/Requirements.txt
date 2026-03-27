@@ -3,7 +3,7 @@
 The app must allow customers to create and customize a drink with many configurable attributes: name, base, milk, topping, size, iced flag, and more. The drink object has many attributes, some mandatory and some optional. The app needs a solution that allows flexible object construction without long unreadable constructors, while ensuring required fields are not omitted.
 
 
-**2 — Mass-produce similar objects fast.**
+**2 — Mass-produce similar objects fast.** - Prototype
 
 The system must generate large numbers of similar drink recipes (seasonal menus, popular clones). These recipes share the same base attributes, toppings, and pricing defaults. Creating each recipe from scratch causes noticeable delays when loading the catalogue. The solution must provide a faster way to create new instances starting from already prepared model instances.
 
