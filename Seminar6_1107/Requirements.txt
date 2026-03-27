@@ -1,0 +1,13 @@
+**1 — Flexible construction of complex objects.**
+
+The app must allow customers to create and customize a drink with many configurable attributes: name, base, milk, topping, size, iced flag, and more. The drink object has many attributes, some mandatory and some optional. The app needs a solution that allows flexible object construction without long unreadable constructors, while ensuring required fields are not omitted.
+
+
+**2 — Mass-produce similar objects fast.**
+
+The system must generate large numbers of similar drink recipes (seasonal menus, popular clones). These recipes share the same base attributes, toppings, and pricing defaults. Creating each recipe from scratch causes noticeable delays when loading the catalogue. The solution must provide a faster way to create new instances starting from already prepared model instances.
+
+
+**3 — Decouple object creation from client code.**
+
+Noir & Bean will include multiple categories of products: drinks, pastries, merch. Each category contains several concrete types with different internal attributes and initialization rules. The ordering modules must be able to request product creation without depending on concrete classes, constructors, or initialization details. Developers need a creation mechanism that hides these details, reduces coupling, and allows new product types to be added without changing client code.
