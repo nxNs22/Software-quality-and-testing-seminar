@@ -1,6 +1,6 @@
-package csie.ase.ro.design.patterns.builder.eager;
+package csie.ase.ro.design.patterns.builder.lazy;
 
-public class CoffeeDrink {
+public class LazyCoffeeDrink {
     private String name;
     private String base;
     private String milk;
@@ -8,7 +8,7 @@ public class CoffeeDrink {
     private boolean isIced;
     private String size;
 
-    private CoffeeDrink(){
+    private LazyCoffeeDrink(){
 
     }
 
@@ -64,7 +64,7 @@ public class CoffeeDrink {
 
     @Override
     public String toString() {
-        return "CoffeeDrink{" +
+        return "LazyCoffeeDrink{" +
                 "name='" + name + '\'' +
                 ", base='" + base + '\'' +
                 ", milk='" + milk + '\'' +
@@ -74,43 +74,54 @@ public class CoffeeDrink {
                 '}';
     }
 
-    public static class EagerCoffeeDrinkBuilder{
-        CoffeeDrink coffeeDrink;
+    public static class LazyCoffeeDrinkBuilder{
+        private String name;
+        private String base;
+        private String milk;
+        private String topping;
+        private boolean isIced;
+        private String size;
 
-        public EagerCoffeeDrinkBuilder(String name){
-            this.coffeeDrink = new CoffeeDrink();
-            this.coffeeDrink.name = name;
+        public LazyCoffeeDrinkBuilder(String name){
+            this.name = name;
         }
 
-        public EagerCoffeeDrinkBuilder addBase(String base){
-            this.coffeeDrink.base = base;
+        public LazyCoffeeDrinkBuilder addBase(String base){
+            this.base = base;
             return this;
         }
 
-        public EagerCoffeeDrinkBuilder addMilk(String milk){
-            this.coffeeDrink.milk = milk;
+        public LazyCoffeeDrinkBuilder addMilk(String milk){
+            this.milk = milk;
             return this;
         }
 
-        public EagerCoffeeDrinkBuilder addTopping(String topping){
-            this.coffeeDrink.topping = topping;
+        public LazyCoffeeDrinkBuilder addTopping(String topping){
+            this.topping = topping;
             return this;
         }
 
-        public EagerCoffeeDrinkBuilder addSize(String size){
-            this.coffeeDrink.size = size;
+        public LazyCoffeeDrinkBuilder addSize(String size){
+            this.size = size;
             return this;
         }
 
-        public EagerCoffeeDrinkBuilder addIce(boolean isIced){
-            this.coffeeDrink.isIced = isIced;
+        public LazyCoffeeDrinkBuilder addIce(boolean isIced){
+            this.isIced = isIced;
             return this;
         }
 
-        public CoffeeDrink build(){
-            return this.coffeeDrink;
+        public LazyCoffeeDrink build(){
+            LazyCoffeeDrink lazyCoffeeDrink = new LazyCoffeeDrink();
+            lazyCoffeeDrink.name = this.name;
+            lazyCoffeeDrink.base = this.base;
+            lazyCoffeeDrink.milk = this.milk;
+            lazyCoffeeDrink.isIced = this.isIced;
+            lazyCoffeeDrink.size = this.size;
+
+            return lazyCoffeeDrink;
+
         }
 
     }
 }
-
