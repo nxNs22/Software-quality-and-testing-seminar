@@ -1,0 +1,18 @@
+To develop a restaurant ordering & checkout system, implement a software solution that allows:
+R1 — Integrate an incompatible external payment component into the checkout system
+
+- The ordering system is built around a **standard base type** for payment processors, defined internally by the team — every processor must **extend this base type** and share its common behavior (logging, naming, transaction counting).
+- The shop has just signed a contract with a partner that provides a **legacy cash register** exposed through an **external interface** whose API **cannot be modified** (different method names, different parameter types, different return conventions).
+- The external component must be usable **without changing the client code** and **without modifying the external class**.
+- The component must **plug into the existing base type** so the client treats it **polymorphically** alongside native processors.
+- The solution must provide a **translation layer** that makes the incompatible class usable wherever the expected base type is required.
+
+R2 — Attach optional responsibilities to meals dynamically, without modifying existing classes
+
+- The menu is organized around a hierarchy of meal types (grilled dishes, vegan bowls, seasonal specials…) all sharing a **common abstract base type** (prepare, serve, print a description, compute price).
+- At order time, customers can attach **optional add-ons** on top of any meal: extra sauce, premium plating, takeaway packaging, happy-hour discounts, and more in the future.
+- Each add-on must **augment** the price and/or description of the wrapped meal.
+- Some add-ons must **consult the wrapped meal's state** to decide what to do (e.g. a promotional wrapper that only applies above a price threshold).
+- Customers must be able to **stack any combination of add-ons in any order**, decided at **run-time**.
+- The decorated meal must still be **substitutable for a plain meal** — any system accepting the base type must accept the decorated version.
+- The original meal classes and the base type **must not be modified** to add new options (exponential number of combinations → a subclass per combination is not viable).
