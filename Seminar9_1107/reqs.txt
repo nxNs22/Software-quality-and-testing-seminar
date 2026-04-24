@@ -1,0 +1,19 @@
+1. We're building StarForge, a galactic colony-builder game. The player places thousands of trees on planets, whole cities of buildings, and fleets of spaceships across a sandbox world.
+**Render thousands of 3D objects without loading the same heavy model over and over.**
+
+- Every object placed in the world has a **3D model** (mesh, vertices, textures) — this data is **expensive** to build and consumes a lot of memory.
+- The same model is reused **many, many times** across the scene: one forest has 500 identical trees, one city has 200 identical buildings, one fleet has 30 identical spaceships.
+- Each individual object on screen only differs by its **position** (and potentially rotation, scale, team color) — everything else is **shared**.
+- The system must **not** instantiate the heavy model data more than once per model type, no matter how many objects of that type appear in the scene.
+- Client code must stay simple: ask for a model by name and display it at a given position — the sharing must be **transparent**.
+- A central component owns the pool of shared model instances and hands them out on demand.
+
+2. Same StarForge game. Players don't just build — they talk to each other in an in-game chat while playing. The game client exposes an IChatServer API, and behind that API sits the real chat backend. Community team wants toxic messages blocked before they reach the backend.
+**Insert a controlled indirection in front of the real chat API, without changing the game client.**
+
+- The real chat server (`ChatServer`) is already written, tested, and deployed for StarForge. We **cannot modify** it.
+- Community guidelines require every outgoing message to be **screened against a list of forbidden words**. Messages that contain any forbidden word must be **blocked** before reaching the real server.
+- Another concern on the roadmap: **lazy network connect** — don't open the socket to the chat backend until the player actually sends their first message.
+- The game code already works against an **interface** (`IChatServer`) and should **not change** when we add these concerns.
+- The solution must provide a **stand-in object** with the **same interface** as the real server, placed transparently between the game and the real server, that decides **when**, **whether**, and **how** to forward each call.
+
